@@ -5,55 +5,110 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lista de Presentes de Casamento 💍</title>
   <style>
+    /* 🎨 Fundo com textura floral suave */
     body {
       font-family: "Segoe UI", sans-serif;
-      background: #f5f6fa;
+      background: url('https://i.imgur.com/9OBdG5V.jpg') center/cover fixed #f7f8fc;
       margin: 0;
-      padding: 20px;
+      padding: 0;
       color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
-    h1 {
+
+    header {
       text-align: center;
-      color: #444;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px 10px 25px 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      backdrop-filter: blur(6px);
     }
+
+    header h1 {
+      margin: 0;
+      color: #444;
+      font-size: 2rem;
+    }
+
+    header p {
+      color: #777;
+      margin-top: 8px;
+      font-size: 1rem;
+    }
+
+    main {
+      flex: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
     #nameInput {
       width: 100%;
+      max-width: 400px;
       padding: 10px;
       border-radius: 8px;
       border: 1px solid #ccc;
-      margin: 20px 0;
+      margin: 20px 0 30px 0;
       font-size: 1rem;
       box-sizing: border-box;
+      background: rgba(255,255,255,0.95);
     }
+
     #giftList {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+      justify-items: center;
     }
+
     .gift {
-      background: white;
-      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 16px;
       padding: 15px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      width: 100%;
+      max-width: 250px;
+      backdrop-filter: blur(4px);
     }
+
+    .gift:hover {
+      transform: scale(1.04);
+      box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+    }
+
     .gift img {
       width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 10px;
+      height: 180px;
+      object-fit: contain;
+      background: #fafafa;
+      border-radius: 12px;
       margin-bottom: 10px;
+      border: 1px solid #eee;
     }
+
     .gift strong {
       display: block;
       margin-bottom: 6px;
       font-size: 1.1rem;
+      color: #333;
     }
+
+    .gift p {
+      font-size: 0.9rem;
+      color: #555;
+      min-height: 20px;
+    }
+
     button {
-      background: #28a745;
+      background: #e88c9b;
       color: white;
       border: none;
       border-radius: 8px;
@@ -61,17 +116,59 @@
       cursor: pointer;
       margin-top: 8px;
       width: 100%;
+      font-size: 0.95rem;
+      transition: background 0.2s ease, transform 0.2s ease;
     }
+
+    button:hover:not(:disabled) {
+      background: #d86e81;
+      transform: scale(1.05);
+    }
+
     button:disabled {
       background: gray;
       cursor: not-allowed;
     }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
+      color: #777;
+      font-size: 1rem;
+      backdrop-filter: blur(6px);
+    }
+
+    /* Responsividade */
+    @media (max-width: 1100px) {
+      #giftList { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 800px) {
+      #giftList { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 500px) {
+      #giftList { grid-template-columns: 1fr; }
+    }
+
   </style>
 </head>
 <body>
-  <h1>🎁 Lista de Presentes de Casamento</h1>
-  <input type="text" id="nameInput" placeholder="Digite seu nome para presentear" />
-  <div id="giftList">Carregando lista...</div>
+  <header>
+    <h1>Com amor, Ana & João 💕</h1>
+    <p>Escolha um presente para celebrar este momento especial conosco</p>
+  </header>
+
+  <main>
+    <input type="text" id="nameInput" placeholder="Digite seu nome para presentear" />
+    <div id="giftList">Carregando lista...</div>
+  </main>
+
+  <footer>
+    💞 Obrigado por fazer parte deste momento tão especial em nossas vidas 💞
+  </footer>
 
   <script>
     const API_URL = "https://sheetdb.io/api/v1/ctfywcocvxbby"; // 👈 substitua pelo seu link do SheetDB
