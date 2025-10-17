@@ -10,26 +10,47 @@
       background: #f5f6fa;
       margin: 0;
       padding: 20px;
-      max-width: 700px;
-      margin: auto;
       color: #333;
     }
     h1 {
       text-align: center;
       color: #444;
     }
+    #nameInput {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin: 20px 0;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
     #giftList {
-      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 15px;
     }
     .gift {
       background: white;
       border-radius: 12px;
       padding: 15px;
-      margin-bottom: 12px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
+      text-align: center;
+    }
+    .gift img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    .gift strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1.1rem;
     }
     button {
       background: #28a745;
@@ -38,18 +59,12 @@
       border-radius: 8px;
       padding: 8px 12px;
       cursor: pointer;
+      margin-top: 8px;
+      width: 100%;
     }
     button:disabled {
       background: gray;
       cursor: not-allowed;
-    }
-    #nameInput {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      margin-bottom: 20px;
-      font-size: 1rem;
     }
   </style>
 </head>
@@ -59,7 +74,7 @@
   <div id="giftList">Carregando lista...</div>
 
   <script>
-    const API_URL = "https://sheetdb.io/api/v1/ctfywcocvxbby"; // 👈 cole aqui sua URL do SheetDB
+    const API_URL = "https://sheetdb.io/api/v1/ctfywcocvxbby"; // 👈 substitua pelo seu link do SheetDB
 
     async function carregarPresentes() {
       const res = await fetch(API_URL);
@@ -71,10 +86,9 @@
         const div = document.createElement("div");
         div.className = "gift";
         div.innerHTML = `
-          <div>
-            <strong>${item.presente}</strong><br>
-            ${item.presenteador ? `🎁 Presenteado por <b>${item.presenteador}</b>` : "Disponível"}
-          </div>
+          <img src="${item.imagem || 'https://via.placeholder.com/200x150?text=Sem+imagem'}" alt="${item.presente}">
+          <strong>${item.presente}</strong>
+          <p>${item.presenteador ? `🎁 Presenteado por <b>${item.presenteador}</b>` : "Disponível"}</p>
           <button ${item.presenteador ? "disabled" : ""}>Presentear</button>
         `;
 
@@ -102,7 +116,6 @@
         return;
       }
 
-      // Atualiza o campo presenteador
       await fetch(API_URL + "/presente/" + encodeURIComponent(presente), {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
