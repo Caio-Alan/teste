@@ -16,6 +16,15 @@
       image-rendering: -webkit-optimize-contrast; /* melhora a nitidez em telas hd */
     }
 
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(255,255,255,0.6); /* leve véu branco por cima */
+      z-index: -1;
+    }
+
     header {
       text-align: center;
       background: rgba(255, 255, 255, 0.9);
