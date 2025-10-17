@@ -9,12 +9,11 @@
     body {
       font-family: "Segoe UI", sans-serif;
       background: url('https://i.pinimg.com/736x/48/d5/f5/48d5f552d3956df0011fb03a292becc2.jpg') center/cover fixed #f7f8fc;
-      margin: 0;
-      padding: 0;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+      background-size: cover; /* faz a imagem cobrir toda a tela */
+      background-position: center center; /* centraliza a imagem */
+      background-attachment: fixed; /* cria o efeito de fundo fixo */
+      background-repeat: no-repeat;
+      image-rendering: -webkit-optimize-contrast; /* melhora a nitidez em telas hd */
     }
 
     header {
