@@ -6,22 +6,23 @@
   <title>Lista de Presentes de Casamento 💍</title>
   <style>
     /* 🎨 Fundo com textura floral suave */
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background: url('https://i.pinimg.com/736x/48/d5/f5/48d5f552d3956df0011fb03a292becc2.jpg') center/cover fixed #f7f8fc;
-      background-size: cover; /* faz a imagem cobrir toda a tela */
-      background-position: center center; /* centraliza a imagem */
-      background-attachment: fixed; /* cria o efeito de fundo fixo */
+     body {
+      background-image: url('LINK_DA_IMAGEM_SELECIONADA');
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed;
       background-repeat: no-repeat;
-      image-rendering: -webkit-optimize-contrast; /* melhora a nitidez em telas hd */
+      /* opcional: filtro suave para melhorar leitura */
+      background-color: #f7f8fc;
+      /* opcional: sobreposição semi-transparente */
     }
-
+    
     body::before {
       content: "";
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(255,255,255,0.6); /* leve véu branco por cima */
+      background: rgba(255,255,255,0.6); /* reduz contraste do fundo */
       z-index: -1;
     }
 
